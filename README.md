@@ -3,4 +3,4 @@ WordPress-Image-Clipboard
 
 Past image from clipboard
 
-http://wpcases.com/product/image-clipboard/
+http://casepress.org/product/image-clipboard/
