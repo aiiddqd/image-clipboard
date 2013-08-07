@@ -36,7 +36,7 @@ R: For example, you can take a screenshot using monosnap, and attach it to a pos
 
 == Screenshots ==
 
-1. add
+None.
 
 == Changelog ==
 
