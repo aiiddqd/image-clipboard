@@ -49,6 +49,7 @@ class Clipboard_Images
 
 	public function save_image()
 	{
+		$post_id = $_POST['post_id'];
 		$img = $_POST['img'];
 		$tmp_img = explode(";", $img);
 		$img_header = explode('/', $tmp_img[0]);
@@ -60,8 +61,19 @@ class Clipboard_Images
 		$uploads = wp_upload_dir($time = null); 
 		$filename = wp_unique_filename($uploads['path'], $imgtitle);
 		
+		$image_url = $uploads['url'].'/'.$filename;
+		
 		file_put_contents($uploads['path'].'/'.$filename, file_get_contents('data://'.$img));
-
+		
+		$wp_filetype = wp_check_filetype($image_url);
+		$attachment = array(
+			'guid' => $image_url, 
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => preg_replace('/\.[^.]+$/', '', basename($image_url)),
+			'post_content' => '',
+			'post_status' => 'inherit'
+		);
+		wp_insert_attachment($attachment, $imgtitle, $post_id);
 		echo json_encode(array('file' => $uploads['url'] .'/'. $filename));
 		die();
 	}
