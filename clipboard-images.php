@@ -73,7 +73,10 @@ class Clipboard_Images
 			'post_content' => '',
 			'post_status' => 'inherit'
 		);
-		wp_insert_attachment($attachment, $imgtitle, $post_id);
+		$attachment_id = wp_insert_attachment($attachment, $uploads['path'].'/'.$filename, $post_id);
+		require_once(ABSPATH . 'wp-admin/includes/image.php');
+		$attachment_data = wp_generate_attachment_metadata( $attachment_id, $uploads['path'].'/'.$filename );
+		wp_update_attachment_metadata( $attachment_id, $attachment_data );
 		echo json_encode(array('file' => $uploads['url'] .'/'. $filename));
 		die();
 	}
