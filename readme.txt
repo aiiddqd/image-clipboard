@@ -1,7 +1,7 @@
 === Clipboard Images ===
 Contributors: casepress
 Donate link: http://casepress.org
-Tags: post, comments, attachments, images
+Tags: post, comments, attachments, images, clipboard
 Requires at least: 3.x
 Tested up to: 3.6
 Stable tag: 0.2
