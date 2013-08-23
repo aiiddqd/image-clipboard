@@ -1,5 +1,7 @@
 (function($) {
 
+	
+	
     tinymce.create('tinymce.plugins.cbimages', {
 
         init: function(ed, url) {
@@ -21,11 +23,7 @@
 										post_id: post_id
                                         }, function(response) {
                                             if (response.file) {
-                                                var img = new Image();
-                                                img.onload = function() {
-                                                    $(ed.getDoc().body).append(img);
-                                                };
-                                                img.src = response.file;
+												tinyMCE.execCommand("mceInsertContent", false, '<img src="'+response.file+'" />');
                                             }
                                         }, 'json');
                                 }

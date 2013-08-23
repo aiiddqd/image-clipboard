@@ -15,7 +15,11 @@
 										post_id: post_id
                                         }, function(response) {
                                             if (response.file) {
-                                                $("#comment").val($("#comment").val() + '<img src="' + response.file + '">');
+												var CursorPos = getCursorPosition(document.getElementById('comment'));
+												var MyValue = $("#comment").val();
+												var FinishStr = MyValue.substr(CursorPos,MyValue.length-1);
+												$("#comment").val(MyValue.substr(0,CursorPos)+'<img src="' + response.file + '">'+FinishStr);
+												setCaretToPos(document.getElementById("comment"), $("#comment").val().length-FinishStr.length);
                                             }
                                         }, 'json');
                         }

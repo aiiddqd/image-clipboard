@@ -3,7 +3,7 @@
 	Plugin Name: Clipboard Images
 	Description: Support paste images from clipboard for posts & comments (based on filereader.js)
 	Author: CasePress
-	Version: 0.2
+	Version: 0.3
 	Author URI: https://github.com/casepress/WordPress-Image-Clipboard
  */
 
@@ -11,29 +11,27 @@ class Clipboard_Images
 {
 	public function __construct()
 	{
-		add_action('admin_enqueue_scripts', array(&$this, 'scripts'));
-		add_action('wp_enqueue_scripts', array(&$this, 'scripts'));
+		add_action('admin_enqueue_scripts', array(&$this, 'admin_scripts'));
+		add_action('wp_enqueue_scripts', array(&$this, 'frontend_scripts'));
 
 		add_action('init', array(&$this, 'init'));
 
 		add_action('wp_ajax_cbimages_save', array(&$this, 'save_image'));
 		add_action('wp_ajax_nopriv_cbimages_save', array(&$this, 'save_image'));
 	}
-
-	public function scripts()
+	public function frontend_scripts()
 	{
 		wp_enqueue_script('filereader.js', plugins_url("js/filereader.min.js", __FILE__), array('jquery'));
-
-		if (is_admin())
-		{
-			wp_enqueue_script('admin-cb-images', plugins_url("js/admin.js", __FILE__), array('filereader.js'));
-		}
-		else
-		{
-			wp_enqueue_script('fronted-cb-images', plugins_url("js/fronted.js", __FILE__), array('filereader.js'));
-			// hook for ajax url
-			wp_localize_script('fronted-cb-images', 'cbimages', array('ajaxurl' => admin_url('admin-ajax.php')));  
-		}
+		wp_enqueue_script('cursor_position.js', plugins_url("js/cursor_position.js", __FILE__), array('jquery'));
+		wp_enqueue_script('fronted-cb-images', plugins_url("js/fronted.js", __FILE__), array('filereader.js'));
+		wp_localize_script('fronted-cb-images', 'cbimages', array('ajaxurl' => admin_url('admin-ajax.php')));  
+		
+	}
+	public function admin_scripts()
+	{
+		wp_enqueue_script('filereader.js', plugins_url("js/filereader.min.js", __FILE__), array('jquery'));
+		wp_enqueue_script('cursor_position.js', plugins_url("js/cursor_position.js", __FILE__), array('jquery'));
+		wp_enqueue_script('admin-cb-images', plugins_url("js/admin.js", __FILE__), array('filereader.js'));
 	}
 
 	public function init()

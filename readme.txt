@@ -4,7 +4,7 @@ Donate link: http://casepress.org
 Tags: post, comments, attachments, images, clipboard
 Requires at least: 3.x
 Tested up to: 3.6
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Paste images from clipboard in posts or comments with Clipboard Images.
 == Description ==
 
 * Author: CasePress
-* Version: 0.2
+* Version: 0.3
 * Author URI: https://github.com/casepress/WordPress-Image-Clipboard
 
 Support paste images from clipboard for posts & comments (based on filereader.js). For example, 
@@ -39,6 +39,9 @@ R: For example, you can take a screenshot using monosnap, and attach it to a pos
 None.
 
 == Changelog ==
+
+= 0.3 =
+* Refactory code.
 
 = 0.2 =
 * Fix bug with binding of images and posts.
