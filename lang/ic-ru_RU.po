@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Image Clipboard\n"
+"POT-Creation-Date: 2013-09-21 15:29+0600\n"
+"PO-Revision-Date: 2013-09-21 15:52+0600\n"
+"Last-Translator: \n"
+"Language-Team: rasko <trasyhoob@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\Users\\Rasko\\Desktop\\clipboard\n"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:34
+msgid "Image Clipboard Options Page"
+msgstr "Страница настроек Image Clipboard"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:35
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:72
+msgid "Image Clipboard Options"
+msgstr "Настройки Image Clipboard"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:50
+msgid "Hacker?"
+msgstr "Взломщик?"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:86
+msgid "Enable image clipboard for comments:"
+msgstr "Включить Image Clipboard для комментариев?"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:88
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:96
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:104
+msgid "Disable"
+msgstr "Отключить"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:89
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:97
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:105
+msgid "Enable"
+msgstr "Включить"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:94
+msgid "Enable image clipboard progress bar:"
+msgstr "Включить Image Clipboard прогресс бар?"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:102
+msgid "Enable image clipboard drag&drop:"
+msgstr "Включить функцию DRAG&DROP?"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:116
+msgid "Save Changes"
+msgstr ""
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:140
+msgid "Loading"
+msgstr "Загружается"
+
+#: C:\Users\Rasko\Desktop\clipboard/clipboard-images.php:140
+msgid "of"
+msgstr "из"

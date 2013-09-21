@@ -1,0 +1,31 @@
+.clipboard-progress{
+	position: relative;
+	background: #fff;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+	height: 30px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+.clipboard-progress-bar{
+	z-index: 0;
+	top: 0;
+	left: 0;
+	position: absolute;
+	width:0%;
+	height: 100%;
+	background: green;
+}
+.clipboard-progress-content{
+	position: relative;
+	z-index: 1;
+	background: transparent;
+}
+.clipboard-progress-wrapper{
+	margin-top:20px;
+	width:100%;
+	float:left;
+	margin-bottom:20px;
+	display:none;
+}
