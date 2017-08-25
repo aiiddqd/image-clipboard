@@ -24,7 +24,7 @@ function setSelectionRange(input, selectionStart, selectionEnd) {
     range.select();
   }
 }
- 
+
 function setCaretToPos(input, pos) {
   setSelectionRange(input, pos, pos);
 }

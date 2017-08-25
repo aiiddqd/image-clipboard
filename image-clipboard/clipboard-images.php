@@ -1,10 +1,10 @@
 <?php
 /*
-	Plugin Name: Clipboard Images
+	Plugin Name: Image Clipboard
 	Description: Support paste images from clipboard for posts & comments (based on filereader.js)
-	Author: CasePress Studio
-	Version: 1.0
-	Author URI: https://github.com/casepress/WordPress-Image-Clipboard
+	Author: WPCraft
+	Author URI: http://wpcraft.ru/
+	Version: 1.1
  */
 
 class Clipboard_Images
@@ -15,40 +15,40 @@ class Clipboard_Images
 		add_option('ic_comments', '1');
 		add_option('ic_loader', '1');
 		add_option('ic_dd', '1');
-		
+
 		add_action('admin_enqueue_scripts', array(&$this, 'admin_scripts'));
 		add_action('wp_enqueue_scripts', array(&$this, 'frontend_scripts'));
 		add_action('admin_enqueue_scripts', array(&$this, 'general_scripts'));
 		add_action('wp_enqueue_scripts', array(&$this, 'general_scripts'));
-		
+
 		add_action('init', array(&$this, 'init'));
 
 		add_action('wp_ajax_cbimages_save', array(&$this, 'save_image'));
 		add_action('wp_ajax_nopriv_cbimages_save', array(&$this, 'save_image'));
-		
+
 		add_action('admin_menu',  array (&$this, 'options') );
-		
-		
+
+
 	}
-	
+
 	public function options()
 	{
 		add_options_page(
-			__('Image Clipboard Options Page', 'ic'), 
-			__('Image Clipboard Options', 'ic'), 
-			8, 
-			basename(__FILE__), 
-			array (&$this, 'options_page_render') 
+			__('Image Clipboard Options Page', 'ic'),
+			__('Image Clipboard Options', 'ic'),
+			8,
+			basename(__FILE__),
+			array (&$this, 'options_page_render')
 		);
 	}
-	
+
 	public function options_page_render()
 	{
 		$options = array();
-		
-		if ( isset($_POST['submit']) ) 
-		{   
-		   if ( function_exists('current_user_can') && 
+
+		if ( isset($_POST['submit']) )
+		{
+		   if ( function_exists('current_user_can') &&
 				!current_user_can('manage_options') )
 					die ( _e('Hacker?', 'ic') );
 
@@ -64,9 +64,9 @@ class Clipboard_Images
 			update_option('ic_comments', $ic_comments);
 			update_option('ic_loader', $ic_loader);
 			update_option('ic_dd', $ic_dd);
-		
+
 		}
-		
+
 		$options['comments'] = get_option('ic_comments');
 		$options['loader'] = get_option('ic_loader');
 		$options['dd'] = get_option('ic_dd');
@@ -74,13 +74,13 @@ class Clipboard_Images
 		<div class='wrap'>
 			<h2><?php _e('Image Clipboard Options', 'ic'); ?></h2>
 
-			<form name="ic" method="post" 
+			<form name="ic" method="post"
 				action="<?php echo $_SERVER['PHP_SELF']; ?>?page=clipboard-images.php&updated=true">
 
-				<?php 
+				<?php
 					if (function_exists ('wp_nonce_field') )
 					{
-						wp_nonce_field('ic_form'); 
+						wp_nonce_field('ic_form');
 					}
 				?>
 
@@ -100,7 +100,7 @@ class Clipboard_Images
 							<?php _e('Enable', 'ic'); ?> <input type="radio" name="ic_loader" value="1"<?php checked( '1', $options['loader'] ); ?>/>
 						</td>
 					</tr>
-					
+
 					<tr valign="top">
 						<th scope="row"><?php _e('Enable image clipboard drag&drop:', 'ic'); ?></th>
 						<td>
@@ -112,7 +112,7 @@ class Clipboard_Images
 
 				<input type="hidden" name="action" value="update" />
 
-				<input type="hidden" name="page_options" 
+				<input type="hidden" name="page_options"
 					value="ic_comments,ic_loader" />
 
 				<p class="submit">
@@ -122,7 +122,7 @@ class Clipboard_Images
 		</div>
 		<?
 	}
-	
+
 	public function frontend_scripts()
 	{
 		if (get_option('ic_comments') == 1){
@@ -133,19 +133,19 @@ class Clipboard_Images
 	{
 		wp_enqueue_script('admin-cb-images', plugins_url("js/admin.js", __FILE__), array('filereader.js', 'ajaxq.js'));
 	}
-	
+
 	public function general_scripts()
 	{
 		wp_enqueue_style('clipboard.css', plugins_url("css/clipboard.css", __FILE__));
 		wp_enqueue_script('filereader.js', plugins_url("js/filereader.min.js", __FILE__), array('jquery'));
 		wp_enqueue_script('clipboard-functions.js', plugins_url("js/functions.js", __FILE__), array('jquery'));
 		wp_enqueue_script('ajaxq.js', plugins_url("js/ajaxq.js", __FILE__), array('jquery'));
-		wp_localize_script('clipboard-functions.js', 'cbimages', array('ajaxurl' => admin_url('admin-ajax.php'), 'loading' => __('Loading', 'ic'), 'of' => __('of', 'ic'), 'loader' => get_option('ic_loader'), 'dd' => get_option('ic_dd'))); 
+		wp_localize_script('clipboard-functions.js', 'cbimages', array('ajaxurl' => admin_url('admin-ajax.php'), 'loading' => __('Loading', 'ic'), 'of' => __('of', 'ic'), 'loader' => get_option('ic_loader'), 'dd' => get_option('ic_dd')));
 	}
-	
+
 	public function init()
 	{
-		
+
 		add_filter('mce_external_plugins', array(&$this, 'mce_plugin'));
 	}
 
@@ -166,16 +166,16 @@ class Clipboard_Images
 		$imgtitle = mt_rand(111,999);
 		$imgtitle .= '.'.$ext;
 
-		$uploads = wp_upload_dir($time = null); 
+		$uploads = wp_upload_dir($time = null);
 		$filename = wp_unique_filename($uploads['path'], $imgtitle);
-		
+
 		$image_url = $uploads['url'].'/'.$filename;
-		
+
 		file_put_contents($uploads['path'].'/'.$filename, file_get_contents('data://'.$img));
-		
+
 		$wp_filetype = wp_check_filetype($image_url);
 		$attachment = array(
-			'guid' => $image_url, 
+			'guid' => $image_url,
 			'post_mime_type' => $wp_filetype['type'],
 			'post_title' => preg_replace('/\.[^.]+$/', '', basename($image_url)),
 			'post_content' => '',
@@ -189,5 +189,4 @@ class Clipboard_Images
 	}
 }
 
-$clipboard_images = new Clipboard_Images();
-
+new Clipboard_Images;
