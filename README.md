@@ -1,9 +1,9 @@
-WordPress-Image-Clipboard
+WordPress Image Clipboard
 =========================
 
-Past image from clipboard
+Past image from clipboard in WordPress posts and comments
 
-http://casepress.org/product/image-clipboard/
+https://github.com/uptimizt/image-clipboard/
 
 
 Based on http://github.com/bgrins/filereader.js
