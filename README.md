@@ -1,3 +1,6 @@
+# The plugin Is not safe. Don't install without changes.
+
+
 WordPress Image Clipboard
 =========================
 
